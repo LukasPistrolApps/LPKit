@@ -16,7 +16,7 @@ case $1 in
         ;;
     "tvos")
         echo "Testing for tvOS"
-        PLATFORM="platform=tvOS Simulator,name=Apple TV 4K (at 1080p),OS=16.1"
+        PLATFORM="platform=tvOS Simulator,name=Apple TV 4K (3rd generation) (at 1080p),OS=16.1"
         ;;
     *)
         echo "Error: Unknown platform. Please provide one of the following: macos, ios, watchos, tvos"
