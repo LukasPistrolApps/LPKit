@@ -33,4 +33,5 @@ SCHEME="LPKit"
 xcodebuild  \
     -scheme "$SCHEME" \
     -destination "$PLATFORM" \
+    -skipPackagePluginValidation \
     clean test | xcpretty
