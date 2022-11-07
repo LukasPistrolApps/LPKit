@@ -15,9 +15,9 @@ jobs:
         uses: actions/checkout@v1
       - name: Testing Package (macOS)
         run: exec ./.github/scripts/test.sh macos
-      - name: Testing Package (iOS)
-        run: exec ./.github/scripts/test.sh ios
-      - name: Testing Package (watchOS)
-        run: exec ./.github/scripts/test.sh watchos
-      - name: Testing Package (tvOS)
-        run: exec ./.github/scripts/test.sh tvos
+      # - name: Testing Package (iOS)
+      #   run: exec ./.github/scripts/test.sh ios
+      # - name: Testing Package (watchOS)
+      #   run: exec ./.github/scripts/test.sh watchos
+      # - name: Testing Package (tvOS)
+      #   run: exec ./.github/scripts/test.sh tvos
