@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -o pipefail
-
 # Case statements for different platforms
 case $1 in
     "macos")
@@ -28,9 +26,11 @@ esac
 
 SCHEME="LPKit"
 
+export LC_CTYPE=en_US.UTF-8
+
 # Run the tests
 
-xcodebuild  \
+set -o pipefail && xcodebuild  \
     -scheme "$SCHEME" \
     -destination "$PLATFORM" \
     -skipPackagePluginValidation \
