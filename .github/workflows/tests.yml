@@ -1,0 +1,23 @@
+name: Tests
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+jobs:
+  pexels-swift-tests:
+    name: Testing Project
+    runs-on: [self-hosted, macOS]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Testing Package (macOS)
+        run: exec ./.github/scripts/test.sh macos
+      - name: Testing Package (iOS)
+        run: exec ./.github/scripts/test.sh ios
+      - name: Testing Package (watchOS)
+        run: exec ./.github/scripts/test.sh watchOS
+      - name: Testing Package (tvOS)
+        run: exec ./.github/scripts/test.sh tvOS

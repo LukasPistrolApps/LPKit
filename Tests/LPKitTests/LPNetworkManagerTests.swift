@@ -8,6 +8,8 @@
 import XCTest
 @testable import LPKit
 
+#if !os(watchOS)
+
 /// This is a test setup which shows how to implement the `MockURLProtocol`
 /// for unit tests.
 ///
@@ -57,3 +59,5 @@ final class LPNetworkManagerTests: XCTestCase {
         self.networkManager = nil
     }
 }
+
+#endif

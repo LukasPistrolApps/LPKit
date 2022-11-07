@@ -11,6 +11,7 @@ import Foundation
 ///
 /// - Note: This should only be used for testing purposes in unit test classes. A sample of how to use this
 /// can be found in this package's tests folder.
+@available(watchOS, unavailable)
 final public class MockURLProtocol: URLProtocol {
 
     private struct MockConfiguration {
