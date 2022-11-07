@@ -18,6 +18,6 @@ jobs:
       - name: Testing Package (iOS)
         run: exec ./.github/scripts/test.sh ios
       - name: Testing Package (watchOS)
-        run: exec ./.github/scripts/test.sh watchOS
+        run: exec ./.github/scripts/test.sh watchos
       - name: Testing Package (tvOS)
-        run: exec ./.github/scripts/test.sh tvOS
+        run: exec ./.github/scripts/test.sh tvos
