@@ -21,7 +21,10 @@ let package = Package(
     targets: [
         .target(
             name: "LPKit",
-            dependencies: []),
+            dependencies: [],
+            plugins: [
+                .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
+            ]),
         .testTarget(
             name: "LPKitTests",
             dependencies: ["LPKit"]),
