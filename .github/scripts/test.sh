@@ -6,7 +6,7 @@ set -o pipefail
 case $1 in
     "macos")
         echo "Testing for macOS (x86_64)"
-        PLATFORM="platform=macos,arch=arm64"
+        PLATFORM="platform=macos,arch=x86_64"
         ;;
     "ios")
         echo "Testing for iOS (iPhone 13, iOS 16.1)"
