@@ -1,3 +1,3 @@
 # LPKit
 
-A description of this package.
+Collection of Swift & SwiftUI Components
