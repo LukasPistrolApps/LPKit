@@ -24,7 +24,7 @@ struct JSONExporter<T: Encodable>: ViewModifier {
     @Binding private var isPresented: Bool
     var completion: (Result<URL, Error>) -> Void
 
-    init(isPresented: Binding<Bool>, data: [T], onCompletion: @escaping (Result<URL,Error>) -> Void) {
+    init(isPresented: Binding<Bool>, data: [T], onCompletion: @escaping (Result<URL, Error>) -> Void) {
         self._isPresented = isPresented
         self._model = .init(wrappedValue: .init(data: data))
         self.completion = onCompletion
