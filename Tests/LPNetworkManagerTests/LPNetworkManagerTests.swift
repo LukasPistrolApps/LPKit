@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import LPKit
+@testable import LPNetworkManager
 
 #if !os(watchOS)
 

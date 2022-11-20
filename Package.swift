@@ -12,21 +12,40 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "LPKit",
-            targets: ["LPKit"]),
+            name: "LPNetworkManager",
+            targets: ["LPNetworkManager"]),
+        .library(
+            name: "LPJSONPicker",
+            targets: ["LPJSONPicker"]),
+        .library(
+            name: "LPDocumentPicker",
+            targets: ["LPDocumentPicker"])
     ],
     dependencies: [
         .package(url: "https://github.com/lukepistrol/SwiftLintPlugin", from: "0.1.0"),
     ],
     targets: [
         .target(
-            name: "LPKit",
+            name: "LPNetworkManager",
             dependencies: [],
             plugins: [
                 .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
             ]),
+        .target(
+            name: "LPJSONPicker",
+            dependencies: [],
+            plugins: [
+                .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
+            ]),
+        .target(
+            name: "LPDocumentPicker",
+            dependencies: [],
+            plugins: [
+                .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
+            ]),
+
         .testTarget(
-            name: "LPKitTests",
-            dependencies: ["LPKit"]),
+            name: "LPNetworkManagerTests",
+            dependencies: ["LPNetworkManager"]),
     ]
 )
