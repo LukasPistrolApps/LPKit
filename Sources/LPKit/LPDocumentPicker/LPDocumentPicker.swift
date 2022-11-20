@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 
-@available(iOS 15, *)
+#if os(iOS)
 public struct LPDocumentPicker: UIViewControllerRepresentable {
     @Environment(\.dismiss) private var dismiss
 
@@ -51,3 +51,4 @@ public struct LPDocumentPicker: UIViewControllerRepresentable {
         }
     }
 }
+#endif
