@@ -21,7 +21,7 @@ public extension View {
 
 struct JSONExporter<T: Encodable>: ViewModifier {
 
-    @StateObject private var model: LPJSONExporterViewModel<T>
+    @ObservedObject private var model: LPJSONExporterViewModel<T>
     @Binding private var isPresented: Bool
     var completion: (Result<URL, Error>) -> Void
 

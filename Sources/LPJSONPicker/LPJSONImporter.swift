@@ -9,17 +9,18 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 public extension View {
-    func jsonImporter<T: Decodable>(isPresented: Binding<Bool>, result: Binding<[T]?>) -> some View {
+    func jsonImporter<T: Decodable>(isPresented: Binding<Bool>,
+                                    result: @escaping (Result<[T], Error>) -> Void) -> some View {
         modifier(LPJSONImporterViewModifier(isPresented: isPresented, result: result))
     }
 }
 
 struct LPJSONImporterViewModifier<T: Decodable>: ViewModifier {
 
-    @StateObject private var model: LPJSONImporterViewModel<T>
+    @ObservedObject private var model: LPJSONImporterViewModel<T>
     @Binding private var isPresented: Bool
 
-    init(isPresented: Binding<Bool>, result: Binding<[T]?>) {
+    init(isPresented: Binding<Bool>, result: @escaping (Result<[T], Error>) -> Void) {
         self._model = .init(wrappedValue: .init(result: result))
         self._isPresented = isPresented
     }
@@ -31,7 +32,7 @@ struct LPJSONImporterViewModifier<T: Decodable>: ViewModifier {
                 case .success(let url):
                     model.readFile(url: url)
                 case .failure(let error):
-                    print(error)
+                    model.result(.failure(error))
                 }
             }
     }
@@ -40,22 +41,23 @@ struct LPJSONImporterViewModifier<T: Decodable>: ViewModifier {
 class LPJSONImporterViewModel<T: Decodable>: ObservableObject {
 
     @Published var url: URL?
-    @Binding var result: [T]?
+    var result: (Result<[T], Error>) -> Void
 
     public init(
-        result: Binding<[T]?>
+        result: @escaping (Result<[T], Error>) -> Void
     ) {
-        self._result = result
+        self.result = result
     }
 
     func readFile(url: URL) {
         do {
             _ = url.startAccessingSecurityScopedResource()
             let content = try Data(contentsOf: url)
-            self.result = try JSONDecoder().decode([T].self, from: content)
+            let result = try JSONDecoder().decode([T].self, from: content)
+            self.result(.success(result))
             url.stopAccessingSecurityScopedResource()
         } catch {
-            print(error)
+            self.result(.failure(error))
         }
     }
 
