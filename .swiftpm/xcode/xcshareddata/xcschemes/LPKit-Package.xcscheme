@@ -62,6 +62,34 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "LPMarkdown"
+               BuildableName = "LPMarkdown"
+               BlueprintName = "LPMarkdown"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "LPPicker"
+               BuildableName = "LPPicker"
+               BlueprintName = "LPPicker"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -77,6 +105,16 @@
                BlueprintIdentifier = "LPNetworkManagerTests"
                BuildableName = "LPNetworkManagerTests"
                BlueprintName = "LPNetworkManagerTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "LPMarkdownTests"
+               BuildableName = "LPMarkdownTests"
+               BlueprintName = "LPMarkdownTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
