@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct LPPicker<Label, Item>: View where Label: View, Item: Identifiable {
+public struct LPPicker<Label, Item>: View where Label: View, Item: Identifiable {
 
     private var items: [Item]
     @Binding private var selection: Item
     private var label: Label
     private var keyPath: KeyPath<Item, String>
 
-    init(
+    public init(
         items: [Item],
         selection: Binding<Item>,
         title keyPath: KeyPath<Item, String>,
@@ -26,7 +26,7 @@ struct LPPicker<Label, Item>: View where Label: View, Item: Identifiable {
         self.keyPath = keyPath
     }
 
-    var body: some View {
+    public var body: some View {
         LabeledContent {
             Menu {
                 ForEach(items) { item in
