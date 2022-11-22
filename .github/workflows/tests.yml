@@ -9,7 +9,7 @@ on:
 jobs:
   pexels-swift-tests:
     name: Testing Project
-    runs-on: [self-hosted, macOS]
+    runs-on: macos-12
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
