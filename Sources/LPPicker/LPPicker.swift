@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 public struct LPPicker<Label, Item>: View where Label: View, Item: Identifiable {
 
     private var items: [Item]
