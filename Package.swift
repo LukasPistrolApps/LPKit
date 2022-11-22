@@ -19,7 +19,10 @@ let package = Package(
             targets: ["LPJSONPicker"]),
         .library(
             name: "LPDocumentPicker",
-            targets: ["LPDocumentPicker"])
+            targets: ["LPDocumentPicker"]),
+        .library(
+            name: "LPPicker",
+            targets: ["LPPicker"]),
     ],
     dependencies: [
         .package(url: "https://github.com/lukepistrol/SwiftLintPlugin", from: "0.1.0"),
@@ -39,6 +42,12 @@ let package = Package(
             ]),
         .target(
             name: "LPDocumentPicker",
+            dependencies: [],
+            plugins: [
+                .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
+            ]),
+        .target(
+            name: "LPPicker",
             dependencies: [],
             plugins: [
                 .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
