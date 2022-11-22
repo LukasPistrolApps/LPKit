@@ -36,7 +36,7 @@ public struct LPPicker<Label, Item>: View where Label: View, Item: Identifiable 
                     }
                 }
             } label: {
-                HStack(spacing: .mediumSmallSpacing) {
+                HStack(spacing: 4) {
                     Text(selection[keyPath: keyPath])
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     Image(systemName: "chevron.up.chevron.down")
