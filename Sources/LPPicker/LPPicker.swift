@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+#if !os(watchOS) && !os(tvOS)
+
 @available(iOS 16.0, *)
+@available(macOS 13, *)
 public struct LPPicker<Label, Item>: View where Label: View, Item: Identifiable {
 
     private var items: [Item]
@@ -53,3 +56,5 @@ public struct LPPicker<Label, Item>: View where Label: View, Item: Identifiable 
         }
     }
 }
+
+#endif

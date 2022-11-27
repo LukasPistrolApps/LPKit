@@ -8,14 +8,25 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+#if !os(watchOS) && !os(tvOS)
+
 public extension View {
     func jsonExporter<T: Encodable>(
         isPresented: Binding<Bool>,
         data: [T],
         fileName: String,
+        options: JSONSerialization.WritingOptions = .prettyPrinted,
         onCompletion: @escaping (Result<URL, Error>) -> Void
     ) -> some View {
-        modifier(JSONExporter(isPresented: isPresented, data: data, fileName: fileName, onCompletion: onCompletion))
+        modifier(
+            JSONExporter(
+                isPresented: isPresented,
+                data: data,
+                fileName: fileName,
+                options: options,
+                onCompletion: onCompletion
+            )
+        )
     }
 }
 
@@ -28,10 +39,11 @@ struct JSONExporter<T: Encodable>: ViewModifier {
     init(isPresented: Binding<Bool>,
          data: [T],
          fileName: String,
+         options: JSONSerialization.WritingOptions,
          onCompletion: @escaping (Result<URL, Error>) -> Void
     ) {
         self._isPresented = isPresented
-        self._model = .init(wrappedValue: .init(data: data, fileName: fileName))
+        self._model = .init(wrappedValue: .init(data: data, fileName: fileName, options: options))
         self.completion = onCompletion
     }
 
@@ -48,10 +60,12 @@ class LPJSONExporterViewModel<T: Encodable>: ObservableObject {
     @Published var data: [T]
     @Published var document: JSONFile?
     var fileName: String
+    var options: JSONSerialization.WritingOptions
 
-    public init(data: [T], fileName: String) {
+    public init(data: [T], fileName: String, options: JSONSerialization.WritingOptions) {
         self.data = data
         self.fileName = fileName
+        self.options = options
         createFile()
     }
 
@@ -59,7 +73,7 @@ class LPJSONExporterViewModel<T: Encodable>: ObservableObject {
         do {
             let data = try JSONEncoder().encode(data)
             let json = try JSONSerialization.jsonObject(with: data)
-            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: options)
             self.document = JSONFile(data: jsonData, fileName: fileName)
         } catch {
             print(error)
@@ -98,3 +112,5 @@ struct JSONFile: FileDocument {
         return fileWrapper
     }
 }
+
+#endif

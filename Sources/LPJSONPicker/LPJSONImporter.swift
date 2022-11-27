@@ -8,6 +8,8 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+#if !os(watchOS) && !os(tvOS)
+
 public extension View {
     func jsonImporter<T: Decodable>(isPresented: Binding<Bool>,
                                     result: @escaping (Result<[T], Error>) -> Void) -> some View {
@@ -67,3 +69,5 @@ class LPJSONImporterViewModel<T: Decodable>: ObservableObject {
         conformingTo: nil
     )
 }
+
+#endif
