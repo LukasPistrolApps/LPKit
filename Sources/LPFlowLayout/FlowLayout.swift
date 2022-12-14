@@ -50,7 +50,8 @@ public struct FlowLayout: Layout {
             let rowXOffset = (bounds.width - row.frame.width) * alignment.horizontal.percent
             for index in row.range {
                 let xPos = rowXOffset + row.frame.minX + row.xOffsets[index - row.range.lowerBound] + bounds.minX
-                let rowYAlignment = (row.frame.height - subviews[index].sizeThatFits(.unspecified).height) * alignment.vertical.percent
+                let height = subviews[index].sizeThatFits(.unspecified).height
+                let rowYAlignment = (row.frame.height - height) * alignment.vertical.percent
                 let yPos = row.frame.minY + rowYAlignment + bounds.minY
                 subviews[index].place(at: CGPoint(x: xPos, y: yPos), anchor: .topLeading, proposal: .unspecified)
             }
@@ -60,12 +61,6 @@ public struct FlowLayout: Layout {
     struct FlowResult {
         var bounds = CGSize.zero
         var rows = [Row]()
-
-        struct Row {
-            var range: Range<Int>
-            var xOffsets: [Double]
-            var frame: CGRect
-        }
 
         init(in maxPossibleWidth: Double, subviews: Subviews, alignment: Alignment, spacing: CGFloat?) {
             var itemsInRow = 0
@@ -127,6 +122,18 @@ public struct FlowLayout: Layout {
                 remainingWidth = maxPossibleWidth
             }
         }
+    }
+}
+
+@available(tvOS 16.0, *)
+@available(watchOS 9.0, *)
+@available(macOS 13.0, *)
+@available(iOS 16.0, *)
+extension FlowLayout.FlowResult {
+    struct Row {
+        var range: Range<Int>
+        var xOffsets: [Double]
+        var frame: CGRect
     }
 }
 
