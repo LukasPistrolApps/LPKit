@@ -23,6 +23,9 @@ let package = Package(
         .library(
             name: "LPPicker",
             targets: ["LPPicker"]),
+        .library(
+            name: "LPFlowLayout",
+            targets: ["LPFlowLayout"]),
     ],
     dependencies: [
         .package(url: "https://github.com/lukepistrol/SwiftLintPlugin", from: "0.1.0"),
@@ -48,6 +51,12 @@ let package = Package(
             ]),
         .target(
             name: "LPPicker",
+            dependencies: [],
+            plugins: [
+                .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
+            ]),
+        .target(
+            name: "LPFlowLayout",
             dependencies: [],
             plugins: [
                 .plugin(name: "SwiftLint", package: "SwiftLintPlugin")

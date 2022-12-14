@@ -32,15 +32,16 @@ public extension View {
 
 struct JSONExporter<T: Encodable>: ViewModifier {
 
-    @ObservedObject private var model: LPJSONExporterViewModel<T>
+    @ObservedObject private var model: JSONExporterViewModel<T>
     @Binding private var isPresented: Bool
     var completion: (Result<URL, Error>) -> Void
 
-    init(isPresented: Binding<Bool>,
-         data: [T],
-         fileName: String,
-         options: JSONSerialization.WritingOptions,
-         onCompletion: @escaping (Result<URL, Error>) -> Void
+    init(
+        isPresented: Binding<Bool>,
+        data: [T],
+        fileName: String,
+        options: JSONSerialization.WritingOptions,
+        onCompletion: @escaping (Result<URL, Error>) -> Void
     ) {
         self._isPresented = isPresented
         self._model = .init(wrappedValue: .init(data: data, fileName: fileName, options: options))
@@ -56,7 +57,7 @@ struct JSONExporter<T: Encodable>: ViewModifier {
     }
 }
 
-class LPJSONExporterViewModel<T: Encodable>: ObservableObject {
+class JSONExporterViewModel<T: Encodable>: ObservableObject {
     @Published var data: [T]
     @Published var document: JSONFile?
     var fileName: String

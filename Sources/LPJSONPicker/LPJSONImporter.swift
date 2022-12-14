@@ -11,18 +11,23 @@ import UniformTypeIdentifiers
 #if !os(watchOS) && !os(tvOS)
 
 public extension View {
-    func jsonImporter<T: Decodable>(isPresented: Binding<Bool>,
-                                    result: @escaping (Result<[T], Error>) -> Void) -> some View {
-        modifier(LPJSONImporterViewModifier(isPresented: isPresented, result: result))
+    func jsonImporter<T: Decodable>(
+        isPresented: Binding<Bool>,
+        result: @escaping (Result<[T], Error>) -> Void
+    ) -> some View {
+        modifier(JSONImporterViewModifier(isPresented: isPresented, result: result))
     }
 }
 
-struct LPJSONImporterViewModifier<T: Decodable>: ViewModifier {
+struct JSONImporterViewModifier<T: Decodable>: ViewModifier {
 
-    @ObservedObject private var model: LPJSONImporterViewModel<T>
+    @ObservedObject private var model: JSONImporterViewModel<T>
     @Binding private var isPresented: Bool
 
-    init(isPresented: Binding<Bool>, result: @escaping (Result<[T], Error>) -> Void) {
+    init(
+        isPresented: Binding<Bool>,
+        result: @escaping (Result<[T], Error>) -> Void
+    ) {
         self._model = .init(wrappedValue: .init(result: result))
         self._isPresented = isPresented
     }
@@ -40,7 +45,7 @@ struct LPJSONImporterViewModifier<T: Decodable>: ViewModifier {
     }
 }
 
-class LPJSONImporterViewModel<T: Decodable>: ObservableObject {
+class JSONImporterViewModel<T: Decodable>: ObservableObject {
 
     @Published var url: URL?
     var result: (Result<[T], Error>) -> Void

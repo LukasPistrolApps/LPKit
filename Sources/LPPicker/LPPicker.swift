@@ -9,6 +9,7 @@ import SwiftUI
 
 #if !os(watchOS) && !os(tvOS)
 
+/// A more flexible implementation of `SwiftUI.Picker`.
 @available(iOS 16.0, *)
 @available(macOS 13, *)
 public struct LPPicker<Label, Item>: View where Label: View, Item: Identifiable {
