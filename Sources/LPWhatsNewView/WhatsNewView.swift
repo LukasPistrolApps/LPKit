@@ -41,11 +41,19 @@ struct WhatsNewView: View {
         VStack(spacing: 20) {
             ForEach(items) { item in
                 HStack(spacing: 20) {
-                    Image(systemName: item.systemImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 42, alignment: .center)
-                        .foregroundColor(item.color)
+                    if let color = item.color {
+                        Image(systemName: item.systemImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 42, alignment: .center)
+                            .foregroundColor(color)
+                    } else {
+                        Image(systemName: item.systemImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 42, alignment: .center)
+                            .foregroundStyle(.tint)
+                    }
                     VStack(alignment: .leading) {
                         Text(item.title)
                             .font(.headline)
@@ -80,7 +88,7 @@ struct WhatsNewItem: Identifiable {
     var title: String
     var subtitle: String
     var systemImage: String
-    var color: Color
+    var color: Color?
 }
 
 struct WhatsNewView_Previews: PreviewProvider {
@@ -89,8 +97,7 @@ struct WhatsNewView_Previews: PreviewProvider {
             .init(
                 title: "Adipisicing non sit",
                 subtitle: "Adipisicing non sit deserunt pariatur nulla adipisicing reprehenderit cillum esse eiusmod dolore consequat.",
-                systemImage: "star.fill",
-                color: .yellow
+                systemImage: "star.fill"
             ),
             .init(
                 title: "Ut minim mollit minim",
@@ -116,10 +123,6 @@ struct WhatsNewView_Previews: PreviewProvider {
     static var link = URL(string: "https://google.com")
 
     static var previews: some View {
-        Color.white
-            .sheet(isPresented: .constant(true)) {
-                WhatsNewView(items: items, learnMoreLink: link)
-                    .preferredColorScheme(.dark)
-            }
+        WhatsNewView(items: items, learnMoreLink: link)
     }
 }
