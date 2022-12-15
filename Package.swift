@@ -28,6 +28,9 @@ let package = Package(
             name: "LPFlowLayout",
             targets: ["LPFlowLayout"]),
         .library(
+            name: "LPWhatsNewView",
+            targets: ["LPWhatsNewView"]),
+		.library(
             name: "Acknowledgements",
             targets: ["Acknowledgements"]),
     ],
@@ -67,6 +70,12 @@ let package = Package(
             ]),
         .target(
             name: "Acknowledgements",
+            dependencies: [],
+            plugins: [
+                .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
+            ]),
+		.target(
+            name: "LPWhatsNewView",
             dependencies: [],
             plugins: [
                 .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
