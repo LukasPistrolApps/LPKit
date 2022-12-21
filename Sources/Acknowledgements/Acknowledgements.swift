@@ -123,6 +123,7 @@ public struct AcknowledgementItem: Identifiable {
 @available(watchOS 9.0, *)
 @available(macOS 13.0, *)
 @available(iOS 16.0, *)
+@available(macCatalyst 16.0, *)
 public struct AcknowledgementListRow: View {
 
     private let item: AcknowledgementItem
