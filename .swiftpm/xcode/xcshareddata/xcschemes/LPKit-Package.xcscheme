@@ -104,6 +104,20 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Acknowledgements"
+               BuildableName = "Acknowledgements"
+               BlueprintName = "Acknowledgements"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -129,6 +143,16 @@
                BlueprintIdentifier = "LPMarkdownTests"
                BuildableName = "LPMarkdownTests"
                BlueprintName = "LPMarkdownTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AcknowledgementsTests"
+               BuildableName = "AcknowledgementsTests"
+               BlueprintName = "AcknowledgementsTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>

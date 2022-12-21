@@ -1,0 +1,59 @@
+{
+  "pins" : [
+    {
+      "identity" : "lpcloudstorage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lukepistrol/LPCloudStorage",
+      "state" : {
+        "revision" : "07a3eb19b6a7c015fd1687399655f0aa0dee7ecc",
+        "version" : "0.0.3"
+      }
+    },
+    {
+      "identity" : "lpcolorui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lukepistrol/LPColorUI.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "32e8466e7b99a2254edc8e70023b09eb4b374cfc"
+      }
+    },
+    {
+      "identity" : "lpkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LukasPistrolApps/LPKit",
+      "state" : {
+        "revision" : "f52599d391386186f6dee9b9514db11accc5bbb2",
+        "version" : "0.3.4"
+      }
+    },
+    {
+      "identity" : "purchases-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RevenueCat/purchases-ios.git",
+      "state" : {
+        "revision" : "ed027d201802d2b72f31dfd71d29a8745d40d76e",
+        "version" : "4.15.2"
+      }
+    },
+    {
+      "identity" : "swiftlintplugin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lukepistrol/SwiftLintPlugin",
+      "state" : {
+        "revision" : "dfdf5d2023c64995186decbb87899e40df4c277a",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "swiftybeaver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyBeaver/SwiftyBeaver.git",
+      "state" : {
+        "revision" : "12b5acf96d98f91d50de447369bd18df74600f1a",
+        "version" : "1.9.6"
+      }
+    }
+  ],
+  "version" : 2
+}
