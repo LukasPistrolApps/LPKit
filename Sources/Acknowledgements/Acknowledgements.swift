@@ -117,7 +117,6 @@ public struct AcknowledgementItem: Identifiable {
     }
 }
 
-
 /// A `List` row view which displays an ``AcknowledgementItem`` and its version
 /// as a clickable link.
 @available(tvOS 16.0, *)
