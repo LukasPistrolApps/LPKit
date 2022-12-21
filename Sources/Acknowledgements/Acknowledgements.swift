@@ -116,36 +116,3 @@ public struct AcknowledgementItem: Identifiable {
         URL(string: urlString)
     }
 }
-
-/// A `List` row view which displays an ``AcknowledgementItem`` and its version
-/// as a clickable link.
-public struct AcknowledgementListRow: View {
-
-    private let item: AcknowledgementItem
-
-    public init(_ item: AcknowledgementItem) {
-        self.item = item
-    }
-
-    @ViewBuilder
-    public var body: some View {
-        if let url = item.url {
-            Link(destination: url) {
-                if #available(macOS 13.0, *),
-                   #available(iOS 16.0, *),
-                   #available(tvOS 16.0, *),
-                   #available(watchOS 9.0, *) {
-                    LabeledContent(item.title, value: item.version)
-                } else {
-                    HStack {
-                        Text(item.title)
-                            .foregroundColor(.primary)
-                        Spacer()
-                        Text(item.version)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    }
-}
