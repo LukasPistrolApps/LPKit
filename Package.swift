@@ -74,5 +74,9 @@ let package = Package(
         .testTarget(
             name: "LPNetworkManagerTests",
             dependencies: ["LPNetworkManager"]),
+        .testTarget(
+            name: "AcknowledgementsTests",
+            dependencies: ["Acknowledgements"],
+            resources: [.copy("Resources/Test.resolved")]),
     ]
 )

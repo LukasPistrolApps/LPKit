@@ -25,9 +25,11 @@ import SwiftUI
 /// - Attention: The `Package.resolved` file must
 /// be added to your target as a resource.
 public class Acknowledgements: ObservableObject {
+    internal typealias File = (name: String, extension: String)
 
     @Published private var _items: [AcknowledgementItem] = []
     private var bundle: Bundle
+    internal var file: File = ("Package", "resolved")
 
     public var items: [AcknowledgementItem] {
         self._items
@@ -39,13 +41,18 @@ public class Acknowledgements: ObservableObject {
         self.bundle = bundle
     }
 
+    internal init(bundle: Bundle, file: File) {
+        self.bundle = bundle
+        self.file = file
+    }
+
     /// Loads the package dependencies from `Package.resolved`.
     ///
     /// Items can be accessed with ``items``.
     /// - Parameter excluding: An array of strings. Packages with occurrences of
     /// these strings will not be included in the resulting list ``items``.
     public func loadPackages(excluding: [String] = []) {
-        guard let url = bundle.url(forResource: "Package", withExtension: "resolved"),
+        guard let url = bundle.url(forResource: file.name, withExtension: file.extension),
               let data = try? Data(contentsOf: url),
               let root = try? JSONDecoder().decode(PackageRoot.self, from: data) else {
             return
