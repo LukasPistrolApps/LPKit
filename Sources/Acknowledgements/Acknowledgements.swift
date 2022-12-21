@@ -33,10 +33,17 @@ public class Acknowledgements: ObservableObject {
         self._items
     }
 
+    /// Creates a new instance of ``Acknowledgements/Acknowledgements``
+    /// - Parameter bundle: The bundle to use. Defaults to `.main`.
     public init(bundle: Bundle = .main) {
         self.bundle = bundle
     }
 
+    /// Loads the package dependencies from `Package.resolved`.
+    ///
+    /// Items can be accessed with ``items``.
+    /// - Parameter excluding: An array of strings. Packages with occurrences of
+    /// these strings will not be included in the resulting list ``items``.
     public func loadPackages(excluding: [String] = []) {
         guard let url = bundle.url(forResource: "Package", withExtension: "resolved"),
               let data = try? Data(contentsOf: url),
@@ -83,18 +90,29 @@ public class Acknowledgements: ObservableObject {
     }
 }
 
+/// A representation of a single package dependency.
 public struct AcknowledgementItem: Identifiable {
+    /// A unique id of the item.
     public var id: UUID = UUID()
 
+    /// The title of the package.
     public var title: String
+
+    /// The url string of the package.
     public var urlString: String
+
+    /// The version string of the package.
     public var version: String
 
+    /// The url of the package if ``urlString`` is a valid url.
     public var url: URL? {
         URL(string: urlString)
     }
 }
 
+
+/// A `List` row view which displays an ``AcknowledgementItem`` and its version
+/// as a clickable link.
 @available(tvOS 16.0, *)
 @available(watchOS 9.0, *)
 @available(macOS 13.0, *)
