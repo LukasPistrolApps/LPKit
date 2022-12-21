@@ -9,6 +9,7 @@ let package = Package(
         .macOS(.v12),
         .tvOS(.v15),
         .watchOS(.v8),
+        .macCatalyst(.v15),
     ],
     products: [
         .library(
@@ -26,6 +27,9 @@ let package = Package(
         .library(
             name: "LPFlowLayout",
             targets: ["LPFlowLayout"]),
+        .library(
+            name: "Acknowledgements",
+            targets: ["Acknowledgements"]),
     ],
     dependencies: [
         .package(url: "https://github.com/lukepistrol/SwiftLintPlugin", from: "0.1.0"),
@@ -61,9 +65,19 @@ let package = Package(
             plugins: [
                 .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
             ]),
+        .target(
+            name: "Acknowledgements",
+            dependencies: [],
+            plugins: [
+                .plugin(name: "SwiftLint", package: "SwiftLintPlugin")
+            ]),
 
         .testTarget(
             name: "LPNetworkManagerTests",
             dependencies: ["LPNetworkManager"]),
+        .testTarget(
+            name: "AcknowledgementsTests",
+            dependencies: ["Acknowledgements"],
+            resources: [.copy("Resources/Test.resolved")]),
     ]
 )
