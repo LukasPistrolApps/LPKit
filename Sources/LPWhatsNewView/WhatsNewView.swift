@@ -7,23 +7,41 @@
 
 import SwiftUI
 
-struct WhatsNewView: View {
+#if os(iOS)
+
+/// A view that displays information on what is new in your app.
+///
+/// Usage:
+/// ```swift
+/// var items = [WhatsNewItem(...)]
+/// var learnMoreLink = URL(string: "your-url")
+///
+/// var body: some View {
+///   VStack {
+///     // content
+///   }
+///   .sheet(isPresented: $showWhatsNew) {
+///     WhatsNewView(items: items, learnMoreLink: link)
+///   }
+/// }
+/// ```
+public struct WhatsNewView: View {
     @Environment(\.dismiss) private var dismiss
 
-    var items: [WhatsNewItem]
-    var learnMoreLink: URL?
+    public var items: [WhatsNewItem]
+    public var learnMoreLink: URL?
+    public var configuration: Configuration = .init()
 
-    var body: some View {
+    public var body: some View {
         ScrollView {
             titleSection
             listItems
-
         }
         .safeAreaInset(edge: .bottom) {
             VStack {
                 if let learnMoreLink {
                     Link(destination: learnMoreLink) {
-                        Text("Learn more")
+                        Text(configuration.learnMoreButton)
                     }
                 }
                 dismissButton
@@ -32,7 +50,7 @@ struct WhatsNewView: View {
     }
 
     var titleSection: some View {
-        Text("What's new?")
+        Text(configuration.title)
             .font(.largeTitle.bold())
             .padding(.vertical, 60)
     }
@@ -73,7 +91,7 @@ struct WhatsNewView: View {
         Button {
             dismiss()
         } label: {
-            Text("Continue")
+            Text(configuration.continueButton)
                 .frame(maxWidth: .infinity)
                 .font(.headline)
         }
@@ -81,14 +99,35 @@ struct WhatsNewView: View {
         .controlSize(.large)
         .padding()
     }
+
+    /// A collection of configurations for ``WhatsNewView``.
+    public struct Configuration {
+        /// The large title on top
+        public var title: String = "What's new?"
+
+        /// The title of the learn more button
+        public var learnMoreButton: String = "Learn more"
+
+        /// The title of the continue button
+        public var continueButton: String = "Continue"
+    }
 }
 
-struct WhatsNewItem: Identifiable {
-    var id: UUID = UUID()
-    var title: String
-    var subtitle: String
-    var systemImage: String
-    var color: Color?
+/// A type defining a what's new item.
+public struct WhatsNewItem: Identifiable {
+    public var id: UUID = UUID()
+
+    /// The title for the item.
+    public var title: String
+
+    /// The subtitle for the item
+    public var subtitle: String
+
+    /// The SFSymbol for the item
+    public var systemImage: String
+
+    /// The color for the SFSymbol. If not set this will be the tint color of the view.
+    public var color: Color?
 }
 
 struct WhatsNewView_Previews: PreviewProvider {
@@ -96,7 +135,7 @@ struct WhatsNewView_Previews: PreviewProvider {
         [
             .init(
                 title: "Adipisicing non sit",
-                subtitle: "Adipisicing non sit deserunt pariatur nulla adipisicing reprehenderit cillum esse eiusmod dolore consequat.",
+                subtitle: "Adipisicing non sit deserunt pariatur nulla adipisicing reprehenderit.",
                 systemImage: "star.fill"
             ),
             .init(
@@ -126,3 +165,5 @@ struct WhatsNewView_Previews: PreviewProvider {
         WhatsNewView(items: items, learnMoreLink: link)
     }
 }
+
+#endif
